@@ -1,0 +1,30 @@
+.list-map-container{
+    display: flex;
+    /* height: 100vh;
+    width: 100vw; */
+   justify-content: center;
+   gap: 5px;
+   /* margin: 5px;
+   border: 2px solid rgb(157, 73, 73); */
+}
+
+/* .list-map-container>div{
+    height: 85vh;
+    width: 50vw;    
+    border: 2px solid rgb(1, 1, 1);
+    
+    margin: 10px 10px 0px 10px;
+
+} */
+
+.Listcontainer{
+    width: 40vw;
+    height: 85vh;
+    border: 2px solid rgb(255, 255, 255);
+}
+
+.Map-container{
+    width: 60vw;
+    height: 85vh;
+    border: 2px solid rgb(255, 255, 255);
+}

@@ -1,0 +1,39 @@
+/* Header.css */
+
+/* Navbar styling */
+.navbar-custom {
+    background-color: #00b106; /* Light background color */
+    padding: 10px 20px; /* Custom padding */
+  }
+  
+  /* Title of the header */
+  .navbar-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Search form styling */
+  .navbar-search-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  /* Search input box */
+  .navbar-search-input {
+    width: 200px;
+    margin-right: 10px;
+  }
+  
+  /* Search button with icon */
+  .navbar-search-button {
+    border: 1px solid #28a745; /* Green border */
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .navbar-search-button i {
+    font-size: 16px;
+  }
+  
