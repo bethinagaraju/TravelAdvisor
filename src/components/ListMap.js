@@ -8,10 +8,10 @@ function ListMap(props) {
     <div>
       <div className='list-map-container'>
         <div className='Listcontainer'>
-            <List/>
+            <List places={props.places} setType={props.setType} />
         </div>
         <div className='Map-container'>
-            <Map center={props.coordinates}/>
+            <Map places={props.places} center={props.coordinates} setBounds={props.setBounds}/>
         </div>
       </div>
     </div>

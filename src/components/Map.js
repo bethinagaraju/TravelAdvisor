@@ -1,12 +1,15 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api'
+import { GoogleMap, useJsApiLoader, Marker} from '@react-google-maps/api'
 
 const containerStyle = {
   width: '60vw',
   height: '84.65vh',
 }
 
-function MyComponent(props ) {
+function MyComponent(props) {
+
+  console.log(props.places);
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyDdFlkrnTU5rNIbe3aWRiKJQnRUpa_7FtI',
@@ -17,13 +20,12 @@ function MyComponent(props ) {
 
   const onLoad = React.useCallback(function callback(map) {
     const center = {
-      lat: 0,
-      lng: 0,
+      lat: 17.4,
+      lng: 78.4,
     };
     if (props.coordinates) {
       center.lat = parseFloat(props.coordinates.lat);
       center.lng = parseFloat(props.coordinates.lng);
-      console.log(center.lat+"------->"+center.lng)
      
     }
     else{
@@ -39,6 +41,19 @@ function MyComponent(props ) {
     setMap(null)
   }, [])
 
+  
+  const onBoundsChanged = () => {
+    if (map) {
+        const bounds = map.getBounds();
+        if (bounds) {
+            props.setBounds({
+                ne: { lat: bounds.getNorthEast().lat(), lng: bounds.getNorthEast().lng() },
+                sw: { lat: bounds.getSouthWest().lat(), lng: bounds.getSouthWest().lng() },
+            });
+        }
+    }
+};
+
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
@@ -46,21 +61,27 @@ function MyComponent(props ) {
       zoom={8}
       onLoad={onLoad}
       onUnmount={onUnmount}
-
-      onChange = {
-        (e) => {
-          console.log(e)
-
-          props.setCoordinates({
-            lat: e.center.lat(),
-            lng: e.center.lng()})
-        }
-      }
-
-     
+      margin={[50, 50, 50, 50]}
+      onBoundsChanged={onBoundsChanged}
+      // options={{
+      //   timeout: 500,
+      // }}
     >
       {/* Child components, such as markers, info windows, etc. */}
-      <></>
+      
+      {props.places.map((place, i) => (
+  <Marker
+    key={i}
+    position={{ lat: Number(place.latitude), lng: Number(place.longitude) }}
+    label={place.name}
+    icon={{
+      url: place.photo.images.large.url,
+      scaledSize: new window.google.maps.Size(45, 45),
+    }}
+  >
+    
+  </Marker>
+))}
     </GoogleMap>
   ) : (
     <></>

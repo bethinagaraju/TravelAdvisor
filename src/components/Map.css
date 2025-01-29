@@ -3,3 +3,42 @@
     height: 100vh;
     /* border: 2px solid rgb(46, 0, 120); */
 }
+
+.markerDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    max-width: 150px;
+  }
+  
+  .imgMarker img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .infoMarker {
+    margin-top: 8px;
+  }
+  
+  .infoMarker h4 {
+    font-size: 14px;
+    margin: 0;
+    color: #333;
+  }
+  
+  .infoMarker .rating {
+    margin: 4px 0;
+    color: #f39c12;
+  }
+  
+  .infoMarker .address {
+    font-size: 12px;
+    color: #777;
+  }

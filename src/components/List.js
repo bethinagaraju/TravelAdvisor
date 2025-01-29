@@ -1,60 +1,36 @@
+/*************  ✨ Codeium Command 🌟  *************/
 import React from 'react';
 import './List.css';
 import './ListMap.css';
-import P from './placedetails/placedetailss.js';
+// import P from './placedetails/placedetailss.js';
 
 
 
-function List() {
-  const places = [
-    { name: 'DURGA WINES' },
-    { name: 'KPHB' },
-    { name: 'VANGAPAD' },
-    { name: 'BANQUET' },
-    { name: 'DURGA WINES' },
-    { name:  'mefhil'},
-    { name: 'DURGA WINES' },
-    { name: 'KPHB' },
-    { name: 'VANGAPAD' },
-    { name: 'BANQUET' },
-    { name: 'DURGA WINES' },
-    { name:  'mefhil'},
-    { name: 'KPHB' },
-    { name: 'VANGAPAD' },
-    { name: 'BANQUET' },
-    { name: 'DURGA WINES' },
-    { name:  'mefhil'},
-    { name: 'KPHB' },
-    { name: 'VANGAPAD' },
-    { name: 'BANQUET' },
-    { name: 'DURGA WINES' },
-    { name:  'mefhil'},
-    { name: 'DURGA WINES' },
-    { name: 'KPHB' },
-    { name: 'VANGAPAD' },
-    { name: 'BANQUET' },
-    { name: 'DURGA WINES' },
-    { name:  'mefhil'},
-    { name: 'KPHB' },
-    { name: 'VANGAPAD' },
-    { name: 'BANQUET' },
-    { name: 'DURGA WINES' },
-    { name:  'mefhil'},
-    { name: 'KPHB' },
-    { name: 'VANGAPAD' },
-    { name: 'BANQUET' },
-    { name: 'DURGA WINES' },
-    { name:  'mefhil'},
-    { name: 'KPHB' },
-  ];
 
+function List(props) {
+
+  console.log("///////////////");
+  console.log(props.places);
+  console.log("///////////////");
+
+
+
+
+  //////////////// FOOD API LOADING
+
+
+
+
+  
   function changeType(indx){
     if(indx===1){
       document.getElementById("list-heading").innerHTML="Food & Dining around you";
+      
     }
 
     if(indx===2){
       document.getElementById("list-heading").innerHTML="Hotels around you";
+      props.setType("Hotels");
     }
 
     if(indx===3){
@@ -63,11 +39,44 @@ function List() {
 
   }
 
+  function star(indx){
+
+      if (indx === "5.0") {
+          return"★ ★ ★ ★ ★"
+      }
+      if (indx === "4.0") {
+          return "★ ★ ★ ★";
+      }
+      if (indx === "3.0") {
+          return "★ ★ ★";
+      }
+      if (indx === "2.0") {
+          return "★ ★";
+      }
+      if (indx === "1.0") {
+          return "★";
+      }
+
+      if(indx === "4.5"){
+          return "★ ★ ★ ★ ☆";
+      }
+
+      if(indx === "3.5"){ 
+          return "★ ★ ★ ☆ ";
+      }
+
+      if(indx === "2.5"){
+          return "★ ★ ☆ ";
+      }
+  }
+
+
+
 
   return (
     <div className='ListContainer'>
       <div className="container">
-           
+     
             <div>
   <div>
     <br></br>
@@ -110,15 +119,92 @@ function List() {
   </div>
 </div>
 </div>
-<br></br>
+
 
 {/* MAPING ALL THE SPACES */}
 
-<div className='places'>
+<div className='places' >
 
-      {places.map((place, indx) => (
-        <P name={place.name} key={indx} />
-      ))}
+        
+      
+
+  {props.places.map((place, index) => (
+
+    <li key={index}>
+      <div className='placeCard' >
+
+        <div className='placeImage'>
+        {/* <img className='placeImage2' src='https://foodish-api.com/images/samosa/samosa7.jpg' alt=''></img> */}
+       <img className='placeImage2' src={place.photo.images.large.url} alt=''></img>
+        </div>
+
+      
+       
+
+        <h6 className='placeName'>{place.name}</h6>
+
+        <div className='Rating'>
+          <span>
+            {star(place.rating)}
+            { place.rating}</span>
+          <span>{place.num_reviews} reviews</span>
+        </div>
+       
+
+        <div className='Ranking'>
+              <span>Ranking</span>
+              <span>{place.ranking}</span>
+        </div>
+
+        <div className='Cusine'>
+          {place.cuisine && place.cuisine.map((cuisine, index) => (
+            <span className='cuisine-name' key={index}>{cuisine.name}</span>
+          ))}
+        </div>
+
+        <div className='address'>
+              <span>{place.address}</span>
+        </div>
+
+        <div className='phone'>  
+              <span>&#128383;  {place.phone}</span>
+              <span></span>
+        </div>
+
+        <div className='open_now_text'>  
+
+          <span className='open_now_text' style={{color: place.open_now_text === "Closed Now" ? "red" : "green"}}>{place.open_now_text}</span>
+
+           
+        </div>
+
+      
+
+<div className='website'>
+          <span className='tripadvisor' onClick={() => window.open(place.web_url)}>TRIP ADVISOR</span>
+          <span className='website' onClick={() => window.open(place.website)}>WEBSITE</span>
+  </div>
+
+  <div className='booking'>
+          {/* <button className='booking-button'>Reserve Table</button>
+      </div> */}
+
+      {place.reserve_info?.url && (
+  <button
+    className="booking-button"
+    onClick={() => window.open(place.reserve_info.url, "_blank")}
+  >
+    Reserve Table
+  </button>
+)}
+</div>
+      
+      </div>
+    </li>
+  ))}
+ 
+
+
     </div>
 
     </div>
@@ -126,4 +212,8 @@ function List() {
 }
 
 export default List;
+
+
+
+
 
