@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { createContext, useContext } from "react";
 
-function placedetailss(props) {
+// Create the context
+const PlacesContext = createContext();
+
+// Create a provider component
+export const placedetailss = ({ value, children }) => {
   return (
-    <div>
-      <h6>{props.name}</h6>
-    </div>
+    <PlacesContext.Provider value={value}>
+      {children}
+    </PlacesContext.Provider>
   );
-}
+};
 
-export default placedetailss;
+// Create a custom hook to access context easily
+export const usePlaces = () => {
+  return useContext(PlacesContext);
+};
+

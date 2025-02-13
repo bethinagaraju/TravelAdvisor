@@ -1,40 +1,43 @@
-/*************  ✨ Codeium Command 🌟  *************/
-import React from 'react';
+
+import React, { useContext, useEffect, useState} from 'react';
 import './List.css';
 import './ListMap.css';
-// import P from './placedetails/placedetailss.js';
-
-
+import { RateContext } from '../App';
 
 
 function List(props) {
 
+ 
+  const { rate, setRate } = useContext(RateContext);
   console.log("///////////////");
   console.log(props.places);
   console.log("///////////////");
 
+  const [refreshKey, setRefreshKey] = useState(0);
 
+  useEffect(() => {
+    setRefreshKey(refreshKey + 1);
+    console.log("------------------------------------------------------->CALLING REFRESHING FUNCION()");
+  },[props.loc])  
 
-
-  //////////////// FOOD API LOADING
-
-
-
-
-  
   function changeType(indx){
     if(indx===1){
-      document.getElementById("list-heading").innerHTML="Food & Dining around you";
+      document.getElementById("list-heading").innerHTML="Food & Dining";
+      props.setType('https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary');
+      
       
     }
 
     if(indx===2){
-      document.getElementById("list-heading").innerHTML="Hotels around you";
-      props.setType("Hotels");
+      document.getElementById("list-heading").innerHTML="Hotels";
+      
+      props.setType('https://travel-advisor.p.rapidapi.com/hotels/list-in-boundary');
     }
 
     if(indx===3){
-      document.getElementById("list-heading").innerHTML="Attractions around you";
+      document.getElementById("list-heading").innerHTML="Attractions";
+ 
+      props.setType('https://travel-advisor.p.rapidapi.com/attractions/list-in-boundary');
     }
 
   }
@@ -70,54 +73,48 @@ function List(props) {
       }
   }
 
+  
 
 
 
   return (
-    <div className='ListContainer'>
-      <div className="container">
+    <div style={{backgroundColor:"#F4FFC3"}} className='ListContainer'>
+      <div className="container" key={refreshKey}>
      
-            <div>
-  <div>
-    <br></br>
-    <div id='list-heading'>Food & Dining around you</div>
-    {/* <div>
-      <button>Type</button>
-      <div>
-        <a>Restaurants</a>
-        <a>Hotels</a>
-        <a>Attractions</a>
-      </div>
-    </div> */}
+          
+ 
+    <div style={{ color: "#809D3C" }} id="list-heading">
+      {`Food & Dining`}
+    </div>
 
 
 <div className='List-container-2'>
-<div className='list-type'>
-      <label for="rating">Type</label>
-      <br></br>
+<div className='ll'>
+     
       
-      <select id="rating">
-          <option value="5" onClick={()=>{changeType(1)}}>Restaurants</option>
-          <option value="4" onClick={()=>{changeType(2)}}>Hotels</option>
-          <option value="3" onClick={()=>{changeType(3)}}>Attractions</option>
-      </select>
-  </div>
+      <div className="btn-group">
+        <button type="button"  onClick={()=>{changeType(1)}}>Restaurants</button>
+        <button type="button" onClick={()=>{changeType(2)}}>Hotels</button>
+        <button type="button"  onClick={()=>{changeType(3)}}>Attractions</button>
 
-        <div className='list-rating'>
-          <br></br>
-      <label for="rating">Rating</label>
-      <select id="rating">
-          <option value="">ALL</option>
-          <option value="5">5 Stars</option>
-          <option value="4">4 Stars</option>
+        <select id="rating">
+          <option value="" onClick={()=>{setRate("100")}}>ALL</option>
+          <option value="5" onClick={()=>{setRate("5.0")}}>5 Stars</option>
+          <option value="4.5" onClick={()=>{setRate("4.5")}}>4.5 Stars</option>
+          <option value="4" onClick={()=>{setRate("4")}}>4 Stars</option>
           <option value="3">3 Stars</option>
           <option value="2">2 Stars</option>
           <option value="1">1 Star</option>
       </select>
+      </div>
+      <div>
+      
+      </div>
   </div>
+
+        
   </div>
-  </div>
-</div>
+
 </div>
 
 
@@ -125,21 +122,19 @@ function List(props) {
 
 <div className='places' >
 
-        
-      
 
   {props.places.map((place, index) => (
 
     <li key={index}>
       <div className='placeCard' >
 
-        <div className='placeImage'>
-        {/* <img className='placeImage2' src='https://foodish-api.com/images/samosa/samosa7.jpg' alt=''></img> */}
-       <img className='placeImage2' src={place.photo.images.large.url} alt=''></img>
-        </div>
 
-      
-       
+
+          <div className='placeImage'>
+                <img className='placeImage2' src={place.photo?.images?.large?.url || 'https://www.budget101.com/images/image-not-available.png?13663'} alt='' />
+          </div>
+
+  
 
         <h6 className='placeName'>{place.name}</h6>
 
@@ -149,6 +144,8 @@ function List(props) {
             { place.rating}</span>
           <span>{place.num_reviews} reviews</span>
         </div>
+
+    
        
 
         <div className='Ranking'>
@@ -171,11 +168,18 @@ function List(props) {
               <span></span>
         </div>
 
+        <a
+    href={`https://www.google.com/maps/place/${place.latitude},${place.longitude}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    >
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer'  }}>
+    <img style={{ width: '20px', height: '20px' }} src="direction.png" alt="Directions" /> <span style={{ style: 'none', marginLeft: '5px' , color: 'blue',fontSize: '12px'}}>Directions</span>
+    </div>
+    </a>
+
         <div className='open_now_text'>  
-
-          <span className='open_now_text' style={{color: place.open_now_text === "Closed Now" ? "red" : "green"}}>{place.open_now_text}</span>
-
-           
+          <span className='open_now_text' style={{color: place.open_now_text === "Closed Now" ? "red" : "green"}}>{place.open_now_text}</span>          
         </div>
 
       
@@ -186,8 +190,7 @@ function List(props) {
   </div>
 
   <div className='booking'>
-          {/* <button className='booking-button'>Reserve Table</button>
-      </div> */}
+        
 
       {place.reserve_info?.url && (
   <button
@@ -203,8 +206,6 @@ function List(props) {
     </li>
   ))}
  
-
-
     </div>
 
     </div>
@@ -212,6 +213,10 @@ function List(props) {
 }
 
 export default List;
+
+
+
+
 
 
 
