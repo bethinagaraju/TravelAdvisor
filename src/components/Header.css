@@ -4,63 +4,15 @@
 .navbar-custom {
     background-color: #5D8736; /* Light background color */
     padding: 10px 20px; /* Custom padding */
-   
-  }
-  
-  /* Title of the header */
-  .navbar-title {
+}
+
+/* Title of the header */
+.navbar-title {
     font-size: 24px;
     font-weight: bold;
-  }
+}
 
-  .live {
-    width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;  /* Space between icon and text */
-    background-color: var(--dark-green);
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 12px 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-  }
-  
-  /* Search form styling */
-  .navbar-search-form {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: flex-end;
-  }
-  
-  /* Search input box */
-  .navbar-search-input {
-    width: 200px;
-    margin-right: 10px;
-  }
-  
-  /* Search button with icon */
-  /* .navbar-search-button {
-    border: 1px solid #28a745; /* Green border */
-    /* background-color: #9fa6a1; */
-    /* color: white; */
-  /* } */ */
-  
-  .navbar-search-button i {
-    font-size: 16px;
-  }
-
-  .navbar-brand{
-    color: #F4FFC3;
-  }
-  
-
-  .live {
+.live {
     width: 300px;
     display: flex;
     align-items: center;
@@ -82,13 +34,36 @@
     transform: scale(1.05);
 }
 
+/* Search form styling */
+.navbar-search-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+/* Search input box */
+.navbar-search-input {
+    width: 200px;
+    margin-right: 10px;
+}
+
+/* Search button with icon */
+.navbar-search-button i {
+    font-size: 16px;
+}
+
+.navbar-brand {
+    color: #F4FFC3;
+}
+
 /* Live Location Icon */
 .live::before {
     content: "";
     display: inline-block;
     width: 20px;
     height: 20px;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/></svg>');
     background-size: contain;
     background-repeat: no-repeat;
 }
+

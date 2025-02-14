@@ -48,7 +48,7 @@ function Header(props) {
               {/* Search Input */}
 
               <button className="live" onClick={liveLoc}>
-                
+                <i style={{color: "white"}} className="bi bi-geo-alt-fill"></i>
                 near by you
               </button>
 
