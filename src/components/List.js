@@ -9,34 +9,27 @@ function List(props) {
 
  
   const { rate, setRate } = useContext(RateContext);
-  console.log("///////////////");
-  console.log(props.places);
-  console.log("///////////////");
+
 
   const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     setRefreshKey(refreshKey + 1);
-    console.log("------------------------------------------------------->CALLING REFRESHING FUNCION()");
   },[props.loc])  
 
   function changeType(indx){
     if(indx===1){
       document.getElementById("list-heading").innerHTML="Food & Dining";
-      props.setType('https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary');
-      
-      
+      props.setType('https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary');   
     }
 
     if(indx===2){
-      document.getElementById("list-heading").innerHTML="Hotels";
-      
+      document.getElementById("list-heading").innerHTML="Hotels";  
       props.setType('https://travel-advisor.p.rapidapi.com/hotels/list-in-boundary');
     }
 
     if(indx===3){
       document.getElementById("list-heading").innerHTML="Attractions";
- 
       props.setType('https://travel-advisor.p.rapidapi.com/attractions/list-in-boundary');
     }
 

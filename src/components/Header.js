@@ -17,8 +17,6 @@ function Header(props) {
     
     const handleSearch = async (event) => {
         event.preventDefault(); // Prevent page refresh
-        console.log("Calling search button...");
-        console.log("calling search buttonnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"+search);
         props.setLoc(search);
     };
 
@@ -26,7 +24,6 @@ function Header(props) {
       let randNumber = Math.floor(Math.random() * 10000) + 1;
       event.preventDefault();
       props.setNear(randNumber+1);
-      console.log("calling live location buttonnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"+randNumber);
       setSearch("");  // Reset the search input value to empty string
     }
 
@@ -52,7 +49,7 @@ function Header(props) {
                 near by you
               </button>
 
-              <input id='inpt' style={{marginTop: "7px"}}
+              <input id='inpt' style={{marginTop: "7px", marginLeft: "6px"}}
                 className="form-control navbar-search-input"
                 type="search"
                 placeholder="Search"

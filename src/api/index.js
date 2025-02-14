@@ -14,11 +14,11 @@ export const getPlacesData = async (sw, ne,URL) => {
         tr_longitude: ne.lng,
       },
       headers: {
-        'x-rapidapi-key': '45850473b8msh100019c393d81e9p11d29ajsn00afce8b747e',
+        'x-rapidapi-key': '65db60bc87mshc9db11900052399p1348a1jsnc4a32a5bac22',
         'x-rapidapi-host': 'travel-advisor.p.rapidapi.com'
       }
     });
-    console.log("API CALLING restaurants"+URL);
+    // console.log("API CALLING restaurants"+URL);
    return data;
   } catch (error) {
     console.log(error);

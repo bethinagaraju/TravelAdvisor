@@ -18,7 +18,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;  /* Space between icon and text */
-    background-color: var(--dark-green);
+    background-color: #5D8736;
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -27,10 +27,11 @@
     border-radius: 8px;
     cursor: pointer;
     transition: 0.3s ease-in-out;
+   
 }
 
 .live:hover {
-    background-color: var(--medium-green);
+   
     transform: scale(1.05);
 }
 

@@ -24,7 +24,7 @@ function App() {
 
   const[swBounds, setSwBounds] = useState({ lat: '0', lng: '0' });
   const[neBounds, setNeBounds] = useState({ lat: '0', lng: '0' });
-  console.log(type);
+  // console.log(type);
 
   useEffect(() => {
     setTimeout(() => {
@@ -53,16 +53,16 @@ function App() {
   
 
 
-  useEffect(() => {
-    console.log("Places:", places);
-    // console.log("Hotels:", hotels);
-    console.log("Coordinates:", coordinates);
-    console.log("Bounds:", bounds);
-    console.log("RATING TEST",rate);
-    console.log("Location",loc);
-    console.log("swBOUNDS",swBounds);
-    console.log("neBOUNDS",neBounds);
-  }, [places, coordinates, bounds, rate,loc]);
+  // useEffect(() => {
+  //   console.log("Places:", places);
+  //   // console.log("Hotels:", hotels);
+  //   console.log("Coordinates:", coordinates);
+  //   console.log("Bounds:", bounds);
+  //   console.log("RATING TEST",rate);
+  //   console.log("Location",loc);
+  //   console.log("swBOUNDS",swBounds);
+  //   console.log("neBOUNDS",neBounds);
+  // }, [places, coordinates, bounds, rate,loc]);
 
   // let place = places.filter((p) => p.name);
 
@@ -123,7 +123,7 @@ function App() {
   // 🛠️ This useEffect runs AFTER bounds are updated, ensuring API call gets the correct data
   useEffect(() => {
     if (swBounds && neBounds && swBounds.lat !== "0" && neBounds.lat !== "0") {
-      console.log("Fetching places with updated bounds...");
+      // console.log("Fetching places with updated bounds...");
       
       const fetchPlaces = async () => {
         try {
