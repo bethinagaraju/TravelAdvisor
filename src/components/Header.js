@@ -14,10 +14,10 @@ function Header(props) {
     const [search, setSearch] = useState("");
     
 
-    
+
     const handleSearch = async (event) => {
         event.preventDefault(); // Prevent page refresh
-        props.setLoc(search);
+        props.setLoc(search.toLowerCase());
     };
 
     const liveLoc = async (event) => {
